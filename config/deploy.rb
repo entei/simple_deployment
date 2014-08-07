@@ -1,11 +1,11 @@
 require 'bundler/capistrano'
 load 'deploy/assets'
 
-set :repository, 'git@github.com:entei/365.git'
+set :repository, 'git@github.com:entei/simple_deployment.git'
 set :scm, :git
 
-server '127.0.0.1', :app, :web, :db, :primary => true
-set :port, 2222
+server '5.175.165.206', :app, :web, :db, :primary => true
+set :port, 22
 
 set :ssh_options, { :forward_agent => true }
 default_run_options[:shell] = 'bash -l'
@@ -17,11 +17,11 @@ set :rails_env, 'production'
 
 set :project_name, 'simple_deployment'
 
-set :deploy_to, "/home/deployer/projects/#{ project_name }"
+set :deploy_to, "/var/www/#{ project_name }"
 
 desc "Restart of Unicorn"
 task :restart, :except => { :no_release => true } do
-  run "kill -s USR2 `cat /home/deployer/projects/#{ project_name }/shared/pids/unicorn.pid`"
+  run "kill -s USR2 `cat /var/www/#{ project_name }/tmp/pids/unicorn.pid`"
 end
 
 desc "Start unicorn"
@@ -31,7 +31,7 @@ end
 
 desc "Stop unicorn"
 task :stop, :except => { :no_release => true } do
-  run "kill -s QUIT `cat /home/deployer/projects/#{ project_name }/shared/pids/unicorn.pid`"
+  run "kill -s QUIT `cat /var/www/#{ project_name }/tmp/pids/unicorn.pid`"
 end
 
 after 'deploy:finalize_update', 'deploy:symlink_db'
