@@ -11,7 +11,7 @@ set :ssh_options, { :forward_agent => true }
 default_run_options[:shell] = 'bash -l'
 
 set :user, 'deployer'
-set :group, 'deployer'
+#set :group, 'deployer'
 set :use_sudo, false
 set :rails_env, 'production'
 
