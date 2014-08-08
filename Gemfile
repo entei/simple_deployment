@@ -40,8 +40,10 @@ gem 'unicorn', group: :production
 
 # Use Capistrano for deployment
 group :development do
-  gem 'capistrano'
-  gem 'rvm-capistrano'
+  gem 'capistrano', '~> 3.0'
+  gem 'capistrano-rvm',   '~> 0.1', require: false
+  gem 'capistrano-rails',   '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
 end
 
 # Use debugger
