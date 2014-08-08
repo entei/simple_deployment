@@ -34,11 +34,10 @@ task :stop, :except => { :no_release => true } do
   run "kill -s QUIT `cat /var/www/#{ project_name }/tmp/pids/unicorn.pid`"
 end
 
-after 'deploy:finalize_update', 'deploy:symlink_db'
+# # after 'deploy:finalize_update', 'deploy:symlink_db'
 
-namespace :deploy do
-  desc "Symlinks the database.yml"
-  task :symlink_db, :roles => :app do
-    run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
-  end
-end
+# desc "Symlinks the database.yml"
+# task :symlink_db, :roles => :app do
+#   run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+# end
+
