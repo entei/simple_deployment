@@ -1,5 +1,5 @@
+require 'rvm/capistrano' 
 require 'bundler/capistrano'
-load 'deploy/assets'
 
 set :repository, 'git@github.com:entei/simple_deployment.git'
 set :scm, :git
