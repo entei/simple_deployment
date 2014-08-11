@@ -43,7 +43,7 @@ group :development do
   gem 'capistrano', '~> 3.0'
   gem 'capistrano-rvm',   '~> 0.1', require: false
   gem 'capistrano-rails',   '~> 1.1', require: false
-  gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano-bundler'
 end
 
 # Use debugger

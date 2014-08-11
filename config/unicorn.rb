@@ -5,17 +5,19 @@ timeout 30
 
 project_name = 'simple_deployment'
 
-working_directory "/var/www/#{ project_name }"
+root = "/var/www/#{ project_name }/current"
+
+working_directory root
+
+# Unicorn PID file location
+# pid "/path/to/pids/unicorn.pid"
+pid "#{root}/tmp/pids/unicorn.pid"
 
 # Unicorn socket
 listen "/tmp/sockets/unicorn.sock"#, :backlog => 64
 
-# Unicorn PID file location
-# pid "/path/to/pids/unicorn.pid"
-pid "/var/www//#{ project_name }/tmp/pids/unicorn.pid"
-
-stderr_path "/var/www/#{ project_name }/log/unicorn.stderr.log"
-stdout_path "/var/www/#{ project_name }/log/unicorn.stdout.log"
+stderr_path "#{root}/log/unicorn.stderr.log"
+stdout_path "#{root}/log/unicorn.stdout.log"
 
 # Force the bundler gemfile environment variable to
 # reference the capistrano "current" symlink
